@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+    <button id="random">Click here for random quotes</button>
+    <h1 id="content"></h1>
+   
+     <button id="wishlist">Add to wishlist</button>
+    <script>
+       obj1=document.getElementById("wishlist");
+       obj1.style.display ="none";
+       
+       var result;
+       var obj=document.getElementById("random");
+       console.log(obj);
+       obj.addEventListener("click",async()=>{
+        var datas=await fetch("http://localhost:8080/Connect/Random",{method:"POST"});
+         result= await datas.json();
+        console.log(result)
+        myFunction(result); 
+        obj1.style.display ="block";
+       })
+          function myFunction(text) {
+    	   
+        	  const obj=document.getElementById("content");
+        	    obj.textContent=text;
+        	    
+       }
+        
+       obj1.addEventListener("click",async()=>{
+        var datas=await fetch("http://localhost:8080/Connect/Wishlist?quote="+result,{method:"POST"});
+        result= await datas.json();
+        alert(result);
+        //myFunction(result); 
+        })
+           function myFunction(text) {
+         	  const obj=document.getElementById("content");
+         	    obj.textContent=text;
+ }
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<input type="number" id="limit" name="limit">
+<button id="submit" >Search</button>
+<h1 id="content"></h1>
+    <script>
+       var result;
+       var obj=document.getElementById("submit");
+       console.log(obj);
+       obj.addEventListener("click",async()=>{
+    	var limit=document.getElementById("limit").value;
+    	console.log("value "+limit);
+        var datas=await fetch("http://localhost:8080/Connect/Nquotes?limit="+limit,{method:"POST"});
+        result= await datas.json();     
+        result.forEach(myFunction); 
+       })
+          function myFunction(text) {
+    	   const h1 = document.createElement("h1");   	   
+    	   const textNode = document.createTextNode(text);
+    	   h1.appendChild(textNode);
+    	   h1.appendChild(textNode);
+    	   document.body.appendChild(h1);    	
+}
+    </script>
+</body>
+</html>

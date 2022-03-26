@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1 style="text-align:center;">Favourites</h1>
+   <script>   
+        window.addEventListener('DOMContentLoaded',async()=>{
+        	console.log("loaded");
+	    var datas=await fetch("http://localhost:8080/Connect/Loadwish",{method:"POST"});
+	    
+	    result=await datas.json(); 
+	    result.forEach(myFunction); 
+        })
+           function myFunction(text) {
+     	   const h1 = document.createElement("h1");   	   
+     	   const textNode = document.createTextNode(text);
+     	   h1.appendChild(textNode);
+     	   h1.appendChild(textNode);
+     	   document.body.appendChild(h1);    	
+ }
+    </script>
+</body>
+</html>

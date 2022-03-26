@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<label for="category">Choose a category:</label><br><br>
+<select name="categorys" id="category">
+  <option value="motivation">motivation</option>
+  <option value="attitude">attitude </option>
+  <option value="friendship">friendship</option>
+  <option value="wisdom">wisdom</option>
+</select><br><br>
+<button id="submit" >Search</button>
+<h1 id="content"></h1>
+    <script>
+        var obj=document.getElementById("submit");
+        obj.addEventListener("click",async()=>{
+    	var category=document.getElementById("category").value;
+    	console.log(category);
+        var datas=await fetch("http://localhost:8080/Connect/category?category="+category,{method:"POST"});
+        result= await datas.json();
+        console.log(result);
+        myFunction(result); 
+        })
+           function myFunction(text) {
+         	  const obj=document.getElementById("content");
+         	    obj.textContent=text;
+ }
+    </script>
+</body>
+</html>

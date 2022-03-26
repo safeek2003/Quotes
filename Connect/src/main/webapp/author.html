@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<label for="author">Choose a category:</label><br><br>
+<select name="authors" id="author">
+  <option value="venkat">venkat</option>
+  <option value="ramana">ramana </option>
+  <option value="safeek">safeek</option>
+  <option value="yasar">yasar</option>
+</select><br><br>
+<button id="submit" >Search</button>
+<h1 id="content"></h1>
+    <script>
+       
+       var result;
+       var obj=document.getElementById("submit");
+       obj.addEventListener("click",async()=>{
+    	   var name=document.getElementById("author").value;
+    	   console.log(name);
+        var datas=await fetch("http://localhost:8080/Connect/Author?author="+name,{method:"POST"});
+        result= await datas.json();
+        console.log(result);
+        myFunction(result); 
+        })
+           function myFunction(text) {
+         	  const obj=document.getElementById("content");
+         	    obj.textContent=text;
+ }
+    </script>
+</body>
+</html>
